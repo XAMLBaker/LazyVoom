@@ -9,13 +9,13 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LazyVoom.WPF", "src\LazyVoo
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Sample", "Sample", "{C8D5274F-AC00-46C7-1F8D-E88E81087A52}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sample1", "src\Sample\1. Base\Sample1\Sample1.csproj", "{329859B9-E377-49CC-A3FA-79FA779E839F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sample1", "src\Sample\1. Base\Sample1.csproj", "{329859B9-E377-49CC-A3FA-79FA779E839F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sample2", "src\Sample\2. CustomConvention\Sample2\Sample2.csproj", "{498E87B4-3A5D-46A5-BF25-E7AE25B8C681}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sample2", "src\Sample\2. CustomConvention\Sample2.csproj", "{498E87B4-3A5D-46A5-BF25-E7AE25B8C681}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sample3", "src\Sample\3. DirectMapper\Sample3\Sample3.csproj", "{1E863D99-1222-4A47-AD70-A6667D1261F0}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sample3", "src\Sample\3. DirectMapper\Sample3.csproj", "{1E863D99-1222-4A47-AD70-A6667D1261F0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sample4", "src\Sample\4. ServiceProvider\Sample4\Sample4.csproj", "{AA9ECE5F-4110-44AA-9D41-0C1CA89F02BC}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sample4", "src\Sample\4. ServiceProvider\Sample4.csproj", "{AA9ECE5F-4110-44AA-9D41-0C1CA89F02BC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
