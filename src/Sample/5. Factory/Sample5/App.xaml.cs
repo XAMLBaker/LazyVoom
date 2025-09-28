@@ -1,7 +1,7 @@
 ﻿using LazyVoom.Core;
 using System.Windows;
 
-namespace Sample3
+namespace Sample5
 {
     /// <summary>
     /// Interaction logic for App.xaml
@@ -13,7 +13,11 @@ namespace Sample3
             base.OnStartup (e);
 
             MvvmBindingEngine.Instance
-                .WithMapping<MainWindow, MainWindowStore> ();
+              .WithFactory<MainWindow> (() =>
+              {
+                  string arg = " Factory Make!";
+                  return new MainWindowStore (arg);
+              });
         }
     }
 

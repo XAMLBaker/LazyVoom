@@ -1,9 +1,22 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
 
-namespace Sample11
+namespace Sample1
 {
-    public class MainWindowViewModel : ObservableObject
+    public partial class MainWindowViewModel : ObservableObject
     {
-        public string Title { get; } = "Hello";
+        [ObservableProperty] int count;
+
+        [RelayCommand]
+        private void Increment()
+        {
+            Count++;
+        }
+
+        [RelayCommand]
+        private void Decrement()
+        {
+            Count--;
+        }
     }
 }
