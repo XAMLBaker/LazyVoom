@@ -12,7 +12,7 @@ namespace Sample3
         {
             base.OnStartup (e);
 
-            MvvmBindingEngine.Instance
+            LazyBoom.Instance
                 .WithMapping<MainWindow, MainWindowStore> ();
         }
     }

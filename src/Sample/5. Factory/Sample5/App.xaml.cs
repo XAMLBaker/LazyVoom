@@ -12,7 +12,7 @@ namespace Sample5
         {
             base.OnStartup (e);
 
-            MvvmBindingEngine.Instance
+            LazyBoom.Instance
               .WithFactory<MainWindow> (() =>
               {
                   string arg = " Factory Make!";

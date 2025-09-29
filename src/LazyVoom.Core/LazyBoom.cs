@@ -2,22 +2,22 @@ using System.Diagnostics.CodeAnalysis;
 
 namespace LazyVoom.Core
 {
-    public sealed partial class MvvmBindingEngine
+    public sealed partial class LazyBoom
     {
-        private static readonly Lazy<MvvmBindingEngine> _instance = new (() => new MvvmBindingEngine ());
+        private static readonly Lazy<LazyBoom> _instance = new (() => new LazyBoom ());
 
         private readonly Dictionary<string, Func<object>> _instanceProviders;
         private readonly Dictionary<string, Type> _typeRegistry;
         private readonly ViewModelResolver _resolver;
 
-        private MvvmBindingEngine()
+        private LazyBoom()
         {
             _instanceProviders = new Dictionary<string, Func<object>> ();
             _typeRegistry = new Dictionary<string, Type> ();
             _resolver = new ViewModelResolver ();
         }
 
-        public static MvvmBindingEngine Instance => _instance.Value;
+        public static LazyBoom Instance => _instance.Value;
 
         /// <summary>
         /// View에 대응하는 ViewModel을 자동으로 연결합니다
@@ -34,15 +34,15 @@ namespace LazyVoom.Core
 
         private object? ResolveViewModelInstance(object view)
         {
-            // 1. 타입 기반 등록에서 찾기
-            var registeredInstance = GetRegisteredViewModel (view.GetType ());
-            if (registeredInstance != null)
-                return registeredInstance;
-
-            // 2. 팩토리에서 찾기
+            // 1. 팩토리에서 찾기
             var factoryInstance = CreateFromFactory (view);
             if (factoryInstance != null)
                 return factoryInstance;
+
+            // 2. 타입 기반 등록에서 찾기
+            var registeredInstance = GetRegisteredViewModel (view.GetType ());
+            if (registeredInstance != null)
+                return registeredInstance;
 
             // 3. 컨벤션 기반 해결
             return _resolver.ResolveByConvention (view);
@@ -57,7 +57,7 @@ namespace LazyVoom.Core
             var viewModelType = _typeRegistry[key];
 
             return _containerResolver != null
-             ? _containerResolver (viewModelType) : Activator.CreateInstance(viewModelType);
+             ? _containerResolver (viewModelType) : null;
         }
 
         private object? CreateFromFactory(object view)

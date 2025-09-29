@@ -1,6 +1,6 @@
 namespace LazyVoom.Core
 {
-    public sealed partial class MvvmBindingEngine
+    public sealed partial class LazyBoom
     {
         Func<Type, object?>? _containerResolver;
         /// <summary>
