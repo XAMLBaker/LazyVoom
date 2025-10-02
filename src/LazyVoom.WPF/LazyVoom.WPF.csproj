@@ -1,14 +1,41 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net8.0-windows</TargetFramework>
+    <TargetFrameworks>net6.0-windows;net7.0-windows;net8.0-windows;net9.0-windows</TargetFrameworks>
     <Nullable>enable</Nullable>
     <UseWPF>true</UseWPF>
     <ImplicitUsings>enable</ImplicitUsings>
+
+    <!-- NuGet 패키지 정보 -->
+    <PackageId>LazyVoom.WPF</PackageId>
+    <Version>1.0.0</Version>
+    <Authors>lukewire</Authors>
+    <Description>뷰  &lt;-&gt; 뷰모델 자동 맵핑</Description>
+    <PackageTags>LazyVoom;WPF;AutoWireViewModel</PackageTags>
+
+    <!-- XML 문서 포함 -->
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <!-- 심볼 패키지 포함 -->
+    <IncludeSymbols>true</IncludeSymbols>
+    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+
+    <!-- 참조 프로젝트 포함 -->
+    <IncludeReferencedProjects>true</IncludeReferencedProjects>
+    <TargetsForTfmSpecificBuildOutput>$(TargetsForTfmSpecificBuildOutput);CopyProjectReferencesToPackage</TargetsForTfmSpecificBuildOutput>
   </PropertyGroup>
 
-  <ItemGroup>
+  <ItemGroup Condition="'$(Configuration)' == 'Debug'">
     <ProjectReference Include="..\LazyVoom.Core\LazyVoom.Core.csproj" />
   </ItemGroup>
 
+  <ItemGroup Condition="'$(Configuration)' == 'Release'">
+    <ProjectReference Include="..\LazyVoom.Core\LazyVoom.Core.csproj" PrivateAssets="all"/>
+  </ItemGroup>
+
+  <!-- 참조된 프로젝트를 패키지에 포함 -->
+  <Target Name="CopyProjectReferencesToPackage" DependsOnTargets="ResolveReferences">
+    <ItemGroup>
+      <BuildOutputInPackage Include="@(ReferenceCopyLocalPaths->WithMetadataValue('ReferenceSourceTarget', 'ProjectReference'))" />
+    </ItemGroup>
+  </Target>
 </Project>

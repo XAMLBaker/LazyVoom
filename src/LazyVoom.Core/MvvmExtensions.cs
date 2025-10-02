@@ -1,3 +1,5 @@
+using System;
+
 namespace LazyVoom.Core
 {
     /// <summary>
@@ -10,12 +12,12 @@ namespace LazyVoom.Core
         /// </summary>
         public static void AutoBindViewModel(this object view, Action<object, object> setContext)
         {
-            LazyVoom.Instance.EstablishBinding (view, setContext);
+            Voom.Instance.EstablishBinding (view, setContext);
         }
         /// <summary>
         /// 컨벤션을 간편하게 설정합니다
         /// </summary>
-        public static LazyVoom WithConvention(this LazyVoom engine, Func<Type, Type?> typeResolver)
+        public static Voom WithConvention(this Voom engine, Func<Type, Type?> typeResolver)
         {
             engine.SetViewTypeToViewModelTypeResolver (typeResolver);
             return engine;
@@ -23,7 +25,7 @@ namespace LazyVoom.Core
         /// <summary>
         /// ViewModel 팩토리를 간편하게 등록합니다
         /// </summary>
-        public static LazyVoom WithFactory<TView>(this LazyVoom engine, Func<object> factory)
+        public static Voom WithFactory<TView>(this Voom engine, Func<object> factory)
         {
             engine.RegisterFactory<TView> (factory);
             return engine;
@@ -32,7 +34,7 @@ namespace LazyVoom.Core
         /// <summary>
         /// View-ViewModel 매핑을 간편하게 등록합니다
         /// </summary>
-        public static LazyVoom WithMapping<TView, TViewModel>(this LazyVoom engine)
+        public static Voom WithMapping<TView, TViewModel>(this Voom engine)
             where TView : class
             where TViewModel : class
         {
@@ -43,7 +45,7 @@ namespace LazyVoom.Core
         /// <summary>
         /// 컨테이너 리졸버를 간편하게 설정합니다
         /// </summary>
-        public static LazyVoom WithContainerResolver(this LazyVoom engine, Func<Type, object?> containerResolver)
+        public static Voom WithContainerResolver(this Voom engine, Func<Type, object?> containerResolver)
         {
             engine.SetContainerResolver (containerResolver);
             return engine;

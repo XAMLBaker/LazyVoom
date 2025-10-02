@@ -12,7 +12,7 @@ namespace Sample3
         {
             base.OnStartup (e);
 
-            LazyVoom.Core.LazyVoom.Instance
+            Voom.Instance
                 .WithMapping<MainWindow, MainWindowStore> ();
         }
     }

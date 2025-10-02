@@ -16,7 +16,7 @@ namespace Sample4
 
             IServiceProvider provider = services.BuildServiceProvider ();
 
-            LazyVoom.Core.LazyVoom.Instance
+            Voom.Instance
                .WithContainerResolver ((vmType) =>
                {
                    return provider.GetService (vmType) ?? Activator.CreateInstance (vmType);

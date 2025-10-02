@@ -12,7 +12,7 @@ namespace Sample5
         {
             base.OnStartup (e);
 
-            LazyVoom.Core.LazyVoom.Instance
+            Voom.Instance
               .WithFactory<MainWindow> (() =>
               {
                   string arg = " Factory Make!";

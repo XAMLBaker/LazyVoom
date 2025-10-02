@@ -5,10 +5,11 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:local="clr-namespace:Sample3"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:voom="http://lazyVoom.dev/voom"
     Title="MainWindow"
     Width="800"
     Height="450"
-    ViewModelLocator.AutoWireViewModel="True"
+    voom:ViewModelLocator.AutoWireViewModel="True"
     mc:Ignorable="d">
     <Window.Resources>
         <Style TargetType="Button">

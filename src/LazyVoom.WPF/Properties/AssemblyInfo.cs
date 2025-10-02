@@ -1,6 +1,7 @@
 using System.Windows;
 using System.Windows.Markup;
-[assembly: XmlnsDefinition ("http://schemas.microsoft.com/winfx/2006/xaml/presentation", "LazyVoom.WPF")]
+[assembly: XmlnsDefinition ("http://lazyVoom.dev/voom", "LazyVoom.WPF")]
+[assembly: XmlnsPrefix ("http://lazyVoom.dev/voom", "voom")]
 [assembly: ThemeInfo (
     ResourceDictionaryLocation.None,            //where theme specific resource dictionaries are located
                                                 //(used if a resource is not found in the page,
