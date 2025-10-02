@@ -12,7 +12,7 @@ namespace Sample2
         {
             base.OnStartup (e);
 
-            LazyBoom.Instance
+            LazyVoom.Core.LazyVoom.Instance
                .WithConvention ((viewType) =>
                {
                    var viewFullName = viewType.FullName;

@@ -1,6 +1,6 @@
 namespace LazyVoom.Core
 {
-    public sealed partial class LazyBoom
+    public sealed partial class LazyVoom
     {
         Func<Type, object?>? _containerResolver;
         /// <summary>

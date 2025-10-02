@@ -2,22 +2,22 @@ using System.Diagnostics.CodeAnalysis;
 
 namespace LazyVoom.Core
 {
-    public sealed partial class LazyBoom
+    public sealed partial class LazyVoom
     {
-        private static readonly Lazy<LazyBoom> _instance = new (() => new LazyBoom ());
+        private static readonly Lazy<LazyVoom> _instance = new (() => new LazyVoom ());
 
         private readonly Dictionary<string, Func<object>> _instanceProviders;
         private readonly Dictionary<string, Type> _typeRegistry;
         private readonly ViewModelResolver _resolver;
 
-        private LazyBoom()
+        private LazyVoom()
         {
             _instanceProviders = new Dictionary<string, Func<object>> ();
             _typeRegistry = new Dictionary<string, Type> ();
             _resolver = new ViewModelResolver ();
         }
 
-        public static LazyBoom Instance => _instance.Value;
+        public static LazyVoom Instance => _instance.Value;
 
         /// <summary>
         /// View에 대응하는 ViewModel을 자동으로 연결합니다
