@@ -10,10 +10,11 @@
 
   <ItemGroup>
     <PackageReference Include="CommunityToolkit.Mvvm" Version="8.4.0" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="9.0.9" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\LazyVoom.WPF\LazyVoom.WPF.csproj" />
+    <ProjectReference Include="..\..\..\LazyVoom.WPF\LazyVoom.WPF.csproj" />
   </ItemGroup>
 
 </Project>
