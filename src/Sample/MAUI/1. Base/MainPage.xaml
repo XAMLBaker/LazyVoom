@@ -1,0 +1,118 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="Sample1.MainPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:voom="clr-namespace:LazyVoom.Maui;assembly=LazyVoom.Maui"
+    voom:ViewModelLocator.AutoWireViewModel="True"
+    BackgroundColor="#F9FAFB">
+
+    <ContentPage.Resources>
+        <!--  기본 버튼 스타일  -->
+        <Style x:Key="BaseButtonStyle" TargetType="Button">
+            <Setter Property="WidthRequest" Value="120" />
+            <Setter Property="HeightRequest" Value="45" />
+            <Setter Property="BackgroundColor" Value="#6366F1" />
+            <Setter Property="TextColor" Value="White" />
+            <Setter Property="FontAttributes" Value="Bold" />
+            <Setter Property="FontSize" Value="14" />
+            <Setter Property="CornerRadius" Value="8" />
+            <Setter Property="Margin" Value="15,0" />
+            <Setter Property="Shadow">
+                <Setter.Value>
+                    <Shadow
+                        Brush="#000000"
+                        Opacity="0.1"
+                        Radius="8"
+                        Offset="2,2" />
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <!--  Decrement Button  -->
+        <Style
+            x:Key="DecrementButtonStyle"
+            BasedOn="{StaticResource BaseButtonStyle}"
+            TargetType="Button">
+            <Setter Property="BackgroundColor" Value="#EF4444" />
+        </Style>
+
+        <!--  Increment Button  -->
+        <Style
+            x:Key="IncrementButtonStyle"
+            BasedOn="{StaticResource BaseButtonStyle}"
+            TargetType="Button">
+            <Setter Property="BackgroundColor" Value="#10B981" />
+        </Style>
+    </ContentPage.Resources>
+
+    <ScrollView>
+        <Grid Padding="40" RowSpacing="20">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+
+            <!--  Title  -->
+            <Label
+                Grid.Row="0"
+                FontAttributes="Bold"
+                FontSize="24"
+                HorizontalOptions="Center"
+                Text="Counter"
+                TextColor="#374151" />
+
+            <!--  Counter Display  -->
+            <Frame
+                Grid.Row="1"
+                Padding="30,20"
+                BackgroundColor="#F3F4F6"
+                CornerRadius="12"
+                HasShadow="False"
+                HorizontalOptions="Center">
+                <Label
+                    FontAttributes="Bold"
+                    FontSize="48"
+                    HorizontalOptions="Center"
+                    Text="{Binding Count}"
+                    TextColor="#111827"
+                    VerticalOptions="Center" />
+            </Frame>
+
+            <!--  Button Panel  -->
+            <HorizontalStackLayout
+                Grid.Row="2"
+                Margin="0,30,0,0"
+                HorizontalOptions="Center"
+                Spacing="15">
+                <HorizontalStackLayout
+                    Grid.Row="2"
+                    Margin="0,30,0,0"
+                    HorizontalOptions="Center"
+                    Spacing="15">
+                    <Button
+                        Command="{Binding DecrementCommand}"
+                        Style="{StaticResource DecrementButtonStyle}"
+                        Text="- Decrement" />
+
+                    <Button
+                        Command="{Binding IncrementCommand}"
+                        Style="{StaticResource IncrementButtonStyle}"
+                        Text="+ Increment" />
+                </HorizontalStackLayout>
+            </HorizontalStackLayout>
+
+            <!--  Description  -->
+            <Label
+                Grid.Row="3"
+                Margin="0,15,0,0"
+                FontSize="12"
+                HorizontalOptions="Center"
+                Text="Click the buttons to change the counter value"
+                TextColor="#6B7280" />
+        </Grid>
+    </ScrollView>
+
+</ContentPage>
