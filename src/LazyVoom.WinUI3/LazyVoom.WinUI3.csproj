@@ -1,0 +1,55 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFrameworks>net6.0-windows10.0.19041.0;net7.0-windows10.0.19041.0;net8.0-windows10.0.19041.0;net9.0-windows10.0.19041.0</TargetFrameworks>
+    <TargetPlatformMinVersion>10.0.17763.0</TargetPlatformMinVersion>
+    <RootNamespace>LazyVoom.WinUI3</RootNamespace>
+    <RuntimeIdentifiers>win-x86;win-x64;win-arm64</RuntimeIdentifiers>
+    <UseWinUI>true</UseWinUI>
+
+    <!-- NuGet 패키지 정보 -->
+    <PackageId>LazyVoom.WinUI3</PackageId>
+    <Version>1.0.0</Version>
+    <Authors>lukewire</Authors>
+    <Description>뷰 &lt;-&gt; 뷰모델 자동 맵핑 (WinUI3)</Description>
+    <PackageTags>LazyVoom;WinUI3;AutoWireViewModel;MVVM</PackageTags>
+    <PackageProjectUrl>https://github.com/XAMLBaker/LazyVoom</PackageProjectUrl>
+
+    <!-- XML 문서 포함 -->
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+
+    <!-- 심볼 패키지 포함 -->
+    <IncludeSymbols>true</IncludeSymbols>
+    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+
+    <!-- 참조 프로젝트 포함 -->
+    <IncludeReferencedProjects>true</IncludeReferencedProjects>
+    <TargetsForTfmSpecificBuildOutput>
+      $(TargetsForTfmSpecificBuildOutput);CopyProjectReferencesToPackage
+    </TargetsForTfmSpecificBuildOutput>
+
+    <!-- Windows SDK 참조 -->
+    <EnableWindowsTargeting>true</EnableWindowsTargeting>
+  </PropertyGroup>
+  <!-- Core 프로젝트 참조 -->
+  <ItemGroup Condition="'$(Configuration)' == 'Debug'">
+    <ProjectReference Include="..\LazyVoom.Core\LazyVoom.Core.csproj" />
+  </ItemGroup>
+
+  <ItemGroup Condition="'$(Configuration)' == 'Release'">
+    <ProjectReference Include="..\LazyVoom.Core\LazyVoom.Core.csproj" PrivateAssets="all" />
+  </ItemGroup>
+
+  <!-- 참조된 프로젝트를 패키지에 포함 -->
+  <Target Name="CopyProjectReferencesToPackage" DependsOnTargets="ResolveReferences">
+    <ItemGroup>
+      <BuildOutputInPackage Include="@(ReferenceCopyLocalPaths->WithMetadataValue('ReferenceSourceTarget', 'ProjectReference'))" />
+    </ItemGroup>
+  </Target>
+
+  <!-- WinUI 관련 NuGet -->
+  <ItemGroup>
+    <PackageReference Include="Microsoft.WindowsAppSDK" Version="1.5.240802000" />
+    <PackageReference Include="Microsoft.Windows.SDK.BuildTools" Version="10.0.26100.1" PrivateAssets="all" />
+  </ItemGroup>
+  
+</Project>
