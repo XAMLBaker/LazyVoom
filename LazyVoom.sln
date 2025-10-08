@@ -31,6 +31,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sample2", "src\Sample\MAUI\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LazyVoom.WinUI3", "src\LazyVoom.WinUI3\LazyVoom.WinUI3.csproj", "{B410F860-6238-46E7-A14D-53F43B18E081}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LazyVoom.Avalonia", "src\LazyVoom.Avalonia\LazyVoom.Avalonia.csproj", "{2095F22D-6F1B-4B82-83D3-7898C80FB115}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -83,6 +85,10 @@ Global
 		{B410F860-6238-46E7-A14D-53F43B18E081}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B410F860-6238-46E7-A14D-53F43B18E081}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B410F860-6238-46E7-A14D-53F43B18E081}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2095F22D-6F1B-4B82-83D3-7898C80FB115}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2095F22D-6F1B-4B82-83D3-7898C80FB115}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2095F22D-6F1B-4B82-83D3-7898C80FB115}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2095F22D-6F1B-4B82-83D3-7898C80FB115}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

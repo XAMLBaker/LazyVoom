@@ -1,0 +1,51 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFrameworks>net6.0;net8.0</TargetFrameworks>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+
+    <!-- NuGet 패키지 정보 -->
+    <PackageId>LazyVoom.Avalonia</PackageId>
+    <Version>1.0.0</Version>
+    <Authors>lukewire</Authors>
+    <Description>뷰 &lt;-&gt; 뷰모델 자동 맵핑 (Avalonia)</Description>
+    <PackageTags>LazyVoom;Avalonia;AutoWireViewModel;MVVM</PackageTags>
+    <PackageProjectUrl>https://github.com/XAMLBaker/LazyVoom</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/XAMLBaker/LazyVoom</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+
+    <!-- XML 문서 포함 -->
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+
+    <!-- 심볼 패키지 포함 -->
+    <IncludeSymbols>true</IncludeSymbols>
+    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+
+    <!-- 참조 프로젝트 포함 -->
+    <IncludeReferencedProjects>true</IncludeReferencedProjects>
+    <TargetsForTfmSpecificBuildOutput>$(TargetsForTfmSpecificBuildOutput);CopyProjectReferencesToPackage</TargetsForTfmSpecificBuildOutput>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Avalonia" Version="*">
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
+  </ItemGroup>
+
+  <ItemGroup Condition="'$(Configuration)' == 'Debug'">
+    <ProjectReference Include="..\LazyVoom.Core\LazyVoom.Core.csproj" />
+  </ItemGroup>
+
+  <ItemGroup Condition="'$(Configuration)' == 'Release'">
+    <ProjectReference Include="..\LazyVoom.Core\LazyVoom.Core.csproj" PrivateAssets="all" />
+  </ItemGroup>
+
+  <!-- 참조된 프로젝트를 패키지에 포함 -->
+  <Target Name="CopyProjectReferencesToPackage" DependsOnTargets="ResolveReferences">
+    <ItemGroup>
+      <BuildOutputInPackage Include="@(ReferenceCopyLocalPaths->WithMetadataValue('ReferenceSourceTarget', 'ProjectReference'))" />
+    </ItemGroup>
+  </Target>
+
+</Project>
