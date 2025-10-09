@@ -90,8 +90,14 @@ public partial class Voom
     /// View와 ViewModel 타입을 직접 매핑합니다
     /// </summary>
     public void RegisterMapping<
-        [DynamicallyAccessedMembers (DynamicallyAccessedMemberTypes.PublicConstructors)] TView,
-        [DynamicallyAccessedMembers (DynamicallyAccessedMemberTypes.PublicConstructors)] TViewModel>()
+#if NET5_0_OR_GREATER
+    [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)]
+#endif
+    TView,
+#if NET5_0_OR_GREATER
+    [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)]
+#endif
+    TViewModel>()
     {
         RegisterMapping (typeof (TView).FullName ?? typeof (TView).Name, typeof (TViewModel));
     }
