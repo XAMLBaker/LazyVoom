@@ -1,6 +1,6 @@
 ﻿# 🚀 LazyVoom
 
-> XAML 계열(WPF / MAUI / WinUI3 / Avalonia) 경량 View-ViewModel 자동 연결 라이브러리  
+> XAML 계열(WPF / MAUI / WinUI3 / Avalonia / OpenSilver) 경량 View-ViewModel 자동 연결 라이브러리  
 > 프레임워크 아님, 당신만의 아키텍처를 만들어보세요
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
@@ -117,4 +117,5 @@ Caliburn.Micro의 Convention 시스템 참고
 
 LazyVoom은 프레임워크가 되려 하지 않습니다.
 당신이 만드는 아키텍처의 한 조각이 되고자 합니다.
+
 
