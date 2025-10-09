@@ -21,10 +21,134 @@
         -->
         <vm:MainWindowViewModel />
     </Design.DataContext>
+    <Window.Styles>
+        <Style Selector="Button">
+            <Setter Property="Width" Value="120" />
+            <Setter Property="Height" Value="45" />
+            <Setter Property="BorderThickness" Value="0" />
+            <Setter Property="Margin" Value="15,0" />
+            <Setter Property="Background" Value="#6366F1" />
+            <Setter Property="Foreground" Value="White" />
+            <Setter Property="FontWeight" Value="SemiBold" />
+            <Setter Property="FontSize" Value="14" />
+            <Setter Property="Cursor" Value="Hand" />
+            <Setter Property="CornerRadius" Value="8" />
+            <Setter Property="HorizontalContentAlignment" Value="Center" />
+            <Setter Property="VerticalContentAlignment" Value="Center" />
+        </Style>
 
-    <TextBlock
-        HorizontalAlignment="Center"
-        VerticalAlignment="Center"
-        Text="{Binding Greeting}" />
+        <Style Selector="Button:pointerover">
+            <Setter Property="Background" Value="#5855EB" />
+            <Setter Property="RenderTransform" Value="scale(1.05)" />
+        </Style>
 
+        <Style Selector="Button:pressed">
+            <Setter Property="Background" Value="#4F46E5" />
+            <Setter Property="RenderTransform" Value="scale(0.95)" />
+        </Style>
+
+        <!--  Decrement Button Style  -->
+        <Style Selector="Button.decrement">
+            <Setter Property="Background" Value="#EF4444" />
+        </Style>
+
+        <Style Selector="Button.decrement:pointerover">
+            <Setter Property="Background" Value="#DC2626" />
+        </Style>
+
+        <Style Selector="Button.decrement:pressed">
+            <Setter Property="Background" Value="#B91C1C" />
+        </Style>
+
+        <!--  Increment Button Style  -->
+        <Style Selector="Button.increment">
+            <Setter Property="Background" Value="#10B981" />
+        </Style>
+
+        <Style Selector="Button.increment:pointerover">
+            <Setter Property="Background" Value="#059669" />
+        </Style>
+
+        <Style Selector="Button.increment:pressed">
+            <Setter Property="Background" Value="#047857" />
+        </Style>
+    </Window.Styles>
+
+    <Border Padding="40" Background="#F9FAFB">
+        <Border
+            Padding="40"
+            Background="White"
+            BorderBrush="#E5E7EB"
+            BorderThickness="1"
+            BoxShadow="0 4 20 0 #1A000000"
+            CornerRadius="16">
+
+            <Grid RowDefinitions="*,Auto,Auto,Auto">
+
+                <!--  Title  -->
+                <TextBlock
+                    Grid.Row="0"
+                    HorizontalAlignment="Center"
+                    FontSize="24"
+                    FontWeight="Bold"
+                    Foreground="#374151"
+                    Text="Counter" />
+
+                <!--  Counter Display  -->
+                <Border
+                    Grid.Row="1"
+                    MinWidth="120"
+                    Padding="30,20"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    Background="#F3F4F6"
+                    CornerRadius="12">
+                    <TextBlock
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center"
+                        FontSize="48"
+                        FontWeight="Bold"
+                        Foreground="#111827"
+                        Text="{Binding Count}" />
+                </Border>
+
+                <!--  Button Panel  -->
+                <StackPanel
+                    Grid.Row="2"
+                    Margin="0,30,0,0"
+                    HorizontalAlignment="Center"
+                    Orientation="Horizontal">
+
+                    <Button Classes="decrement" Command="{Binding DecrementCommand}">
+                        <TextBlock>
+                            <Run
+                                FontSize="18"
+                                FontWeight="Bold"
+                                Text="-" />
+                            <Run Text=" Decrement" />
+                        </TextBlock>
+                    </Button>
+
+                    <Button Classes="increment" Command="{Binding IncrementCommand}">
+                        <TextBlock>
+                            <Run
+                                FontSize="18"
+                                FontWeight="Bold"
+                                Text="+" />
+                            <Run Text=" Increment" />
+                        </TextBlock>
+                    </Button>
+                </StackPanel>
+
+                <!--  Description  -->
+                <TextBlock
+                    Grid.Row="3"
+                    Margin="0,15,0,0"
+                    HorizontalAlignment="Center"
+                    FontSize="12"
+                    Foreground="#6B7280"
+                    Text="Click the buttons to change the counter value" />
+            </Grid>
+        </Border>
+    </Border>
 </Window>
