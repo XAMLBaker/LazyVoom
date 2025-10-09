@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Page
+    x:Class="Sample1.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="using:Sample1"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:voom="using:LazyVoom.WinUI3"
+    voom:ViewModelLocator.AutoWireViewModel="True"
+    mc:Ignorable="d">
+
+    <Page.Resources>
+        <!--  Base Button Style with Visual States  -->
+        <Style x:Key="BaseButtonStyle" TargetType="Button">
+            <Setter Property="Width" Value="120" />
+            <Setter Property="Height" Value="45" />
+            <Setter Property="Margin" Value="15,0" />
+            <Setter Property="FontWeight" Value="SemiBold" />
+            <Setter Property="FontSize" Value="14" />
+            <Setter Property="CornerRadius" Value="8" />
+            <Setter Property="BorderThickness" Value="1" />
+            <Setter Property="BorderBrush" Value="#E5E7EB" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Grid
+                            x:Name="RootGrid"
+                            Background="{TemplateBinding Background}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}"
+                            CornerRadius="{TemplateBinding CornerRadius}">
+                            <Grid.RenderTransform>
+                                <ScaleTransform CenterX="60" CenterY="22.5" ScaleX="1" ScaleY="1" />
+                            </Grid.RenderTransform>
+                            <ContentPresenter
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Center"
+                                Content="{TemplateBinding Content}" />
+                            <VisualStateManager.VisualStateGroups>
+                                <VisualStateGroup x:Name="CommonStates">
+                                    <VisualState x:Name="Normal">
+                                        <Storyboard>
+                                            <DoubleAnimation
+                                                Storyboard.TargetName="RootGrid"
+                                                Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleX)"
+                                                To="1.0"
+                                                Duration="0:0:0.1" />
+                                            <DoubleAnimation
+                                                Storyboard.TargetName="RootGrid"
+                                                Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleY)"
+                                                To="1.0"
+                                                Duration="0:0:0.1" />
+                                        </Storyboard>
+                                    </VisualState>
+                                    <VisualState x:Name="PointerOver">
+                                        <Storyboard>
+                                            <DoubleAnimation
+                                                Storyboard.TargetName="RootGrid"
+                                                Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleX)"
+                                                To="1.05"
+                                                Duration="0:0:0.1" />
+                                            <DoubleAnimation
+                                                Storyboard.TargetName="RootGrid"
+                                                Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleY)"
+                                                To="1.05"
+                                                Duration="0:0:0.1" />
+                                            <ColorAnimation
+                                                Storyboard.TargetName="RootGrid"
+                                                Storyboard.TargetProperty="(Panel.Background).(SolidColorBrush.Color)"
+                                                Duration="0:0:0.1" />
+                                        </Storyboard>
+                                    </VisualState>
+                                    <VisualState x:Name="Pressed">
+                                        <Storyboard>
+                                            <DoubleAnimation
+                                                Storyboard.TargetName="RootGrid"
+                                                Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleX)"
+                                                To="0.95"
+                                                Duration="0:0:0.1" />
+                                            <DoubleAnimation
+                                                Storyboard.TargetName="RootGrid"
+                                                Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleY)"
+                                                To="0.95"
+                                                Duration="0:0:0.1" />
+                                        </Storyboard>
+                                    </VisualState>
+                                </VisualStateGroup>
+                            </VisualStateManager.VisualStateGroups>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <!--  Default Button Style  -->
+        <Style BasedOn="{StaticResource BaseButtonStyle}" TargetType="Button">
+            <Setter Property="Background" Value="#6366F1" />
+            <Setter Property="Foreground" Value="White" />
+        </Style>
+
+        <!--  Decrement Button Style  -->
+        <Style
+            x:Key="DecrementButtonStyle"
+            BasedOn="{StaticResource BaseButtonStyle}"
+            TargetType="Button">
+            <Setter Property="Background" Value="#EF4444" />
+            <Setter Property="Foreground" Value="White" />
+        </Style>
+
+        <!--  Increment Button Style  -->
+        <Style
+            x:Key="IncrementButtonStyle"
+            BasedOn="{StaticResource BaseButtonStyle}"
+            TargetType="Button">
+            <Setter Property="Background" Value="#10B981" />
+            <Setter Property="Foreground" Value="White" />
+        </Style>
+    </Page.Resources>
+
+    <Border Padding="40" Background="#F9FAFB">
+        <Border
+            Padding="40"
+            Background="White"
+            BorderBrush="#E5E7EB"
+            BorderThickness="1"
+            CornerRadius="16">
+            <Border.Shadow>
+                <ThemeShadow />
+            </Border.Shadow>
+
+            <Grid RowSpacing="20">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+
+                <!--  Title  -->
+                <TextBlock
+                    Grid.Row="0"
+                    HorizontalAlignment="Center"
+                    FontSize="24"
+                    FontWeight="Bold"
+                    Foreground="#374151"
+                    Text="Counter" />
+
+                <!--  Counter Display  -->
+                <Border
+                    Grid.Row="1"
+                    MinWidth="120"
+                    Padding="30,20"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    Background="#F3F4F6"
+                    CornerRadius="12">
+                    <TextBlock
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center"
+                        FontSize="48"
+                        FontWeight="Bold"
+                        Foreground="#111827"
+                        Text="{Binding Count, Mode=OneWay}" />
+                </Border>
+
+                <!--  Button Panel  -->
+                <StackPanel
+                    Grid.Row="2"
+                    Margin="0,10,0,0"
+                    HorizontalAlignment="Center"
+                    Orientation="Horizontal"
+                    Spacing="0">
+
+                    <Button Command="{Binding DecrementCommand}" Style="{StaticResource DecrementButtonStyle}">
+                        <StackPanel Orientation="Horizontal" Spacing="4">
+                            <TextBlock
+                                FontSize="18"
+                                FontWeight="Bold"
+                                Text="-" />
+                            <TextBlock Text="Decrement" />
+                        </StackPanel>
+                    </Button>
+
+                    <Button Command="{Binding IncrementCommand}" Style="{StaticResource IncrementButtonStyle}">
+                        <StackPanel Orientation="Horizontal" Spacing="4">
+                            <TextBlock
+                                FontSize="18"
+                                FontWeight="Bold"
+                                Text="+" />
+                            <TextBlock Text="Increment" />
+                        </StackPanel>
+                    </Button>
+                </StackPanel>
+
+                <!--  Description  -->
+                <TextBlock
+                    Grid.Row="3"
+                    Margin="0,5,0,0"
+                    HorizontalAlignment="Center"
+                    FontSize="12"
+                    Foreground="#6B7280"
+                    Text="Click the buttons to change the counter value" />
+            </Grid>
+        </Border>
+    </Border>
+</Page>
