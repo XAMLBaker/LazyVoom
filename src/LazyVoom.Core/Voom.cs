@@ -41,13 +41,28 @@ public partial class Voom
         if (factoryInstance != null)
             return factoryInstance;
 
+        Type vmType = null;
         // 2. 타입 기반 등록에서 찾기
         var registeredInstance = GetRegisteredViewModel (view.GetType ());
         if (registeredInstance != null)
             return registeredInstance;
 
-        // 3. 컨벤션 기반 해결
-        return _resolver.ResolveByConvention (view);
+        vmType = GetRegisteredViewModelType (view.GetType ());
+     
+        if (vmType == null)
+            vmType = _resolver.GetByConvention (view);
+
+        return _containerResolver != null
+         ? _containerResolver (vmType) : _resolver.CreateViewModelInstance (view, vmType);
+    }
+
+    private Type GetRegisteredViewModelType(Type viewType)
+    {
+        var key = viewType.FullName ?? viewType.Name;
+        if (!_typeRegistry.ContainsKey (key))
+            return null;
+
+        return _typeRegistry[key];
     }
 
     private object? GetRegisteredViewModel(Type viewType)

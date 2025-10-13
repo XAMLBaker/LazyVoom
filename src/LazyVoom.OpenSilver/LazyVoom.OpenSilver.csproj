@@ -8,7 +8,7 @@
 
     <!-- NuGet 패키지 정보 -->
     <PackageId>LazyVoom.OpenSilver</PackageId>
-    <Version>1.0.0</Version>
+    <Version>1.0.1</Version>
     <Authors>lukewire</Authors>
     <Description>뷰 &lt;-&gt; 뷰모델 자동 맵핑 (OpenSilver)</Description>
     <PackageTags>LazyVoom;OpenSilver;AutoWireViewModel;MVVM;Silverlight</PackageTags>
@@ -37,7 +37,8 @@
   <ItemGroup Condition="'$(Configuration)' == 'Release'">
     <ProjectReference Include="..\LazyVoom.Core\LazyVoom.Core.csproj" PrivateAssets="all" />
   </ItemGroup>
-  <ItemGroup>
+
+  <ItemGroup Condition="'$(Configuration)' == 'Debug'">
     <ProjectReference Include="..\LazyVoom.Core\LazyVoom.Core.csproj" />
   </ItemGroup>
   <!-- 참조된 프로젝트를 패키지에 포함 -->

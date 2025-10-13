@@ -7,7 +7,7 @@
 
     <!-- NuGet 패키지 정보 -->
     <PackageId>LazyVoom.Avalonia</PackageId>
-    <Version>1.0.0</Version>
+    <Version>1.0.1</Version>
     <Authors>lukewire</Authors>
     <Description>뷰 &lt;-&gt; 뷰모델 자동 맵핑 (Avalonia)</Description>
     <PackageTags>LazyVoom;Avalonia;AutoWireViewModel;MVVM</PackageTags>

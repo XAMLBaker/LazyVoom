@@ -42,22 +42,7 @@ namespace LazyVoom.Core
             _customFactory = factory;
         }
 
-        public object? ResolveByConvention(object view)
-        {
-            try
-            {
-                var viewModelType = DetermineViewModelType (view);
-                if (viewModelType == null)
-                    return null;
-
-                return CreateViewModelInstance (view, viewModelType);
-            }
-            catch (Exception ex)
-            {
-                throw new InvalidOperationException (
-                    "ViewModel 생성 중 오류가 발생했습니다. 생성자 매개변수를 확인해주세요.", ex);
-            }
-        }
+        public Type GetByConvention(object view) => DetermineViewModelType (view);
 
         private Type? DetermineViewModelType(object view)
         {
@@ -75,7 +60,7 @@ namespace LazyVoom.Core
             return ApplyNamingConvention (view.GetType ());
         }
 
-        private object CreateViewModelInstance(object view, Type viewModelType)
+        public object CreateViewModelInstance(object view, Type viewModelType)
         {
             return _customFactory?.Invoke (view, viewModelType)
                 ?? _defaultActivator (viewModelType);

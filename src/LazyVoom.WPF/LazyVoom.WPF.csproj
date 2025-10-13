@@ -8,7 +8,7 @@
 
     <!-- NuGet 패키지 정보 -->
     <PackageId>LazyVoom.WPF</PackageId>
-    <Version>1.0.1</Version>
+    <Version>1.0.2</Version>
     <Authors>lukewire</Authors>
     <Description>뷰  &lt;-&gt; 뷰모델 자동 맵핑</Description>
     <PackageTags>LazyVoom;WPF;AutoWireViewModel</PackageTags>
